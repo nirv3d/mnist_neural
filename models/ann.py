@@ -9,6 +9,28 @@ def build_model() -> Sequential: # this code is for building a simple ANN model 
     model.add(Dropout(0.2)) # add a Dropout layer with a dropout rate of 0.2 to prevent overfitting
 
     model.add(Dense(128, activation="relu")) # adding another Dense layer with 128 units and ReLU activation because it is a common practice to have multiple hidden layers in an ANN model
-    model.add(Dropout(0.2)) # add another Dropout layer
+    model.add(Dropout(0.2)) 
 
     model.add(Dense(10, activation="softmax")) # adding an output layer with 10 units and softmax converts the output to a probability distribution over 10 classes
+
+    model.compile(
+        optimizer=Adam(learning_rate=0.001), # compile the model with Adam optimizer and a learning rate of 0.001
+        loss="categorical_crossentropy", # use categorical crossentropy as the loss function for multi-class classification
+        metrics=["accuracy"] # track accuracy as a metric during training
+    )
+
+    return model
+
+
+CLASS_NAMES = [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover", 
+    "Dress", 
+    "Coat",
+    "Sandal", 
+    "Shirt", 
+    "Sneaker", 
+    "Bag", 
+    "Ankle boot"
+]
